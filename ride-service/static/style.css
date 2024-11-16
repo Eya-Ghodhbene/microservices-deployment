@@ -1,0 +1,95 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+h1, h2, h3 {
+  color: #333;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+/* Ride Request Form */
+.ride-request-form {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.ride-request-form input,
+.ride-request-form select,
+.ride-request-form button {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.ride-request-form button {
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+.ride-request-form button:hover {
+  background-color: #45a049;
+}
+
+/* Ride Status */
+.ride-status {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.ride-status h3 {
+  margin-top: 0;
+  color: #4CAF50;
+}
+
+.ride-status p {
+  margin: 5px 0;
+}
+
+.status-pending {
+  color: orange;
+}
+
+.status-in-progress {
+  color: blue;
+}
+
+.status-completed {
+  color: green;
+}
+
+.status-canceled {
+  color: red;
+}
+

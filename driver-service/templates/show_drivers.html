@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Liste des Chauffeurs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .driver-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 2rem 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .driver-list li {
+            background-color: white;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .driver-info {
+            margin-bottom: 10px;
+        }
+
+        .driver-info strong {
+            color: #4CAF50;
+        }
+
+        .no-drivers {
+            font-style: italic;
+            color: #888;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Liste des Chauffeurs</h1>
+    </header>
+
+    <main>
+        <div class="actions">
+            <a href="add_driver.html" class="btn">Ajouter un Chauffeur</a>
+        </div>
+
+        <section class="driver-list-section">
+            <ul class="driver-list">
+                {% if drivers %}
+                    {% for driver in drivers %}
+                    <li>
+                        <div class="driver-info">
+                            <strong>Nom:</strong> {{ driver['name'] }}
+                        </div>
+                        <div class="driver-info">
+                            <strong>Permis:</strong> {{ driver['license'] }}
+                        </div>
+                        <div class="driver-info">
+                            <strong>Disponibilité:</strong> {{ 'Disponible' if driver['available'] else 'Non disponible' }}
+                        </div>
+                    </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="no-drivers">Aucun chauffeur n'est disponible pour le moment.</li>
+                {% endif %}
+            </ul>
+        </section>
+
+        <a href="index.html" class="btn">Retour à la page d'accueil</a>
+    </main>
+
+</body>
+
+</html>
+

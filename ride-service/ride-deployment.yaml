@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ride-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ride-service
+  template:
+    metadata:
+      labels:
+        app: ride-service
+    spec:
+      containers:
+      - name: ride-service
+        image: ride-service:latest  # Ensure this matches the image you built
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+

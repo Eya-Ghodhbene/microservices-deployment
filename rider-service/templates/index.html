@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rider Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 900px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-container {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #f7f7f7;
+            border-radius: 5px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #message {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-container a {
+            display: inline-block;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+            padding: 8px 16px;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn-container a:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Rider Service - User Account Management</h1>
+
+        <!-- Form for Creating a New User -->
+        <div class="form-container">
+            <h2>Create New User</h2>
+            <form id="createUserForm">
+                <input type="text" id="name" placeholder="Name" required>
+                <input type="text" id="paymentMethod" placeholder="Preferred Payment Method" required>
+                <button type="button" onclick="createUser()">Create User</button>
+            </form>
+        </div>
+
+        <!-- Form for Updating an Existing User -->
+        <div class="form-container">
+            <h2>Update User</h2>
+            <form id="updateUserForm">
+                <input type="text" id="userIdToUpdate" placeholder="User ID" required>
+                <input type="text" id="updatedName" placeholder="Updated Name">
+                <input type="text" id="updatedPaymentMethod" placeholder="Updated Payment Method">
+                <button type="button" onclick="updateUser()">Update User</button>
+            </form>
+        </div>
+
+        <!-- Form for Deleting an Existing User -->
+        <div class="form-container">
+            <h2>Delete User</h2>
+            <form id="deleteUserForm">
+                <input type="text" id="userIdToDelete" placeholder="User ID" required>
+                <button type="button" onclick="deleteUser()">Delete User</button>
+            </form>
+        </div>
+
+        <!-- Display messages -->
+        <div id="message"></div>
+
+        <!-- Buttons for navigation -->
+        <div class="btn-container">
+            <a href="index.html" class="btn">Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        const apiUrl = "http://localhost:5000";
+
+        async function createUser() {
+            const name = document.getElementById("name").value;
+            const paymentMethod = document.getElementById("paymentMethod").value;
+
+            const response = await fetch(`${apiUrl}/users`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ name, paymentMethod }),
+            });
+
+            const result = await response.json();
+            document.getElementById("message").innerText = result.message;
+        }
+
+        async function updateUser() {
+            const userId = document.getElementById("userIdToUpdate").value;
+            const name = document.getElementById("updatedName").value;
+            const paymentMethod = document.getElementById("updatedPaymentMethod").value;
+
+            const response = await fetch(`${apiUrl}/users/${userId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ name, paymentMethod }),
+            });
+
+            const result = await response.json();
+            document.getElementById("message").innerText = result.message;
+        }
+
+        async function deleteUser() {
+            const userId = document.getElementById("userIdToDelete").value;
+
+            const response = await fetch(`${apiUrl}/users/${userId}`, {
+                method: "DELETE",
+            });
+
+            const result = await response.json();
+            document.getElementById("message").innerText = result.message;
+        }
+    </script>
+
+</body>
+
+</html>
+
