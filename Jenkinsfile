@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Push to Docker Hub') {
             steps {
-                sh 'docker login -u <docker-username> -p <docker-password>'
+                sh 'docker login -u islem0512 -p Miredodo:*1'
                 sh 'docker push payment-service:latest'
                 sh 'docker push driver-service:latest'
                 sh 'docker push rider-service:latest'
