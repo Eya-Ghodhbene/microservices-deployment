@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/Eya-Ghodhbene/microservices-deployment.git'
+                git 'https://github.com/Eya-Ghodhbene/microservices-deployment'
             }
         }
         stage('Build Docker Images') {
