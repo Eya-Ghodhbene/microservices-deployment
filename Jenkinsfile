@@ -11,7 +11,8 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 echo 'Cloning the repository from GitHub...'
-                git 'https://github.com/Eya-Ghodhbene/microservices-deployment'
+                git 'git@github.com:Eya-Ghodhbene/microservices-deployment.git'
+
             }
         }
 
