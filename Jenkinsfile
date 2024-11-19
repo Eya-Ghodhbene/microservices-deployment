@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_HUB_USERNAME = 'eyaghodhbene' // Votre nom d'utilisateur Docker Hub
         DOCKER_HUB_PASSWORD = 'eya@09112002' // Votre mot de passe Docker Hub
+        GITHUB_TOKEN = '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'
     }
 
     stages {
