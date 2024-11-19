@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_USERNAME = 'islem0512' // Votre nom d'utilisateur Docker Hub
-        DOCKER_HUB_PASSWORD = 'Miredodo:*1' // Votre mot de passe Docker Hub
+        DOCKER_HUB_USERNAME = 'eyaghodhbene' // Votre nom d'utilisateur Docker Hub
+        DOCKER_HUB_PASSWORD = 'eya@09112002' // Votre mot de passe Docker Hub
     }
 
     stages {
@@ -19,9 +19,9 @@ pipeline {
                 echo 'Building Docker images for all microservices...'
                 // Construction des images pour chaque microservice
                 sh 'docker build -t payment-service:latest -f Dockerfile .'
-                sh 'docker build -t driver-service:latest ./driver-service'
-                sh 'docker build -t rider-service:latest ./rider-service'
-                sh 'docker build -t ride-service:latest ./ride-service'
+                sh 'docker build -t driver-service:latest -f Dockerfile .'
+                sh 'docker build -t rider-service:latest -f Dockerfile .'
+                sh 'docker build -t ride-service:latest -f Dockerfile .'
             }
         }
 
@@ -47,7 +47,7 @@ pipeline {
                 // Application des fichiers de déploiement Kubernetes
                 sh 'kubectl apply -f mongo-deployment.yaml'
                 sh 'kubectl apply -f payment-deployment.yaml'
-                sh 'kubectl apply -f driver-deployment.yaml'
+                sh 'kubectl apply -f deployment.yaml'
                 sh 'kubectl apply -f rider-deployment.yaml'
                 sh 'kubectl apply -f ride-deployment.yaml'
             }
