@@ -11,8 +11,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 echo 'Cloning the repository from GitHub...'
-                git url: 'git@github.com:Eya-Ghodhbene/microservices-deployment.git',
-                    credentialsId: '083fb540-ccc3-449a-91fe-e5e2a58f5cce'
+                git url: 'https://github.com/Eya-Ghodhbene/microservices-deployment.git'
 
             }
         }
